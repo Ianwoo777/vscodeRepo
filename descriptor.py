@@ -116,3 +116,7 @@ print(s.name)
 print(s.price)
 s.price=1
 '''
+#
+s=Stock('acem', 50, 80.8)
+print(s.name)
+s.price='alot'
