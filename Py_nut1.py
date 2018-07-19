@@ -94,7 +94,7 @@ def getTitle(url):
         return None
     return title
 
-###aaaabbccdd
+###aaaabbccdd6
 html=urlopen('http://www.pythonscraping.com/pages/warandpeace.html')
 bsobj=BeautifulSoup(html)
 namelist=bsobj.findAll("span", {"class":"green"})
