@@ -117,6 +117,69 @@ print(s.price)
 s.price=1
 '''
 #
+'''
 s=Stock('acem', 50, 80.8)
 print(s.name)
 s.price='alot'
+'''
+import collections
+import bisect
+
+class SortedItem(collections.Sequence):
+    def __init__(self, initial=None):
+        self._items=sorted(initial) if initial is not None else []
+
+    #here, required sequence methods
+    def __getitem__(self, index):
+        return self._items[index]
+
+    def __len__(self):
+        return len(self._items)
+
+    #Method for adding an item in the right location
+    def add(self, item):
+        bisect.insort(self._items, item)
+
+#
+'''
+items=SortedItem([5,1,3])
+print(list(items))
+items.add(4)
+print(list(items))
+print(items[2], len(items))
+
+print(isinstance(items, collections.Iterable))
+'''
+
+class Items(collections.MutableSequence):
+    def __init__(self, initial=None):
+        self._items=list(initial) if initial else []
+    #Required sequence methods
+    def __getitem__(self, index):
+        print('Getting: ', index)
+        return self._items[index]
+
+    def __setitem__(self, index, value):
+        print('setting: ', index, value)
+        self._items[index]=value
+    
+    def __delitem__(self, index):
+        print('deleting: ', index)
+        del self._items[index]
+
+    def insert(self, index, value):
+        print('Inserting: ', index, value)
+        self._items.insert(index, value)
+
+    def __len__(self):
+        print('len')
+        return len(self._items)
+
+#
+'''
+a=Items([1,2,3,4])
+print(len(a))
+a.append(2)
+print(a.count(2))
+'''
+
